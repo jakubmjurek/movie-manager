@@ -26,6 +26,8 @@
 
     <link rel="stylesheet" href="assets/css/styles.css">
 
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
     <script src="assets/js/app.js" defer></script>
 </head>
 <body>
