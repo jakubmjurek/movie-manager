@@ -23,4 +23,4 @@ https://movie-manager-jj.infinityfreeapp.com
 
 ## Preview
 
-![Preview](preview.webp)
+![Preview](assets/images/preview.webp)
