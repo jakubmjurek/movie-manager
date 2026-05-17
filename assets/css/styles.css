@@ -122,6 +122,11 @@ form {
 
 label {font-weight: 500;}
 
+img,
+input,
+textarea,
+select {max-width: 100%;}
+
 input,
 select,
 textarea,
@@ -210,22 +215,34 @@ footer p {
 
 @media (max-width: 768px) {
 
-    .container {flex-direction: column;}
+    .container {
+        flex-direction: column;
+        width:100%;
+    }
 
     aside {
         width: 100%;
-        min-width: 100%;
+        min-width: 0;
+        padding: 1rem;
         border-right: none;
         border-bottom: 1px solid #2b2b2b;
     }
 
     nav ul {
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: wrap;
         justify-content: center;
+        align-items:center;
     }
 
-    main {padding: 1.25rem;}
+    header, footer{
+        width:100%;
+    }
+
+    main {
+        width:100%;
+        padding: 1rem;
+    }
 
     h2 {font-size: 1.5rem;}
 
