@@ -8,11 +8,13 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description"
-        content="Movie tracking web application built with PHP, MySQL, JavaScript, HTML, and CSS.">
+    <meta name="description" content="Movie tracking web application built with PHP, 
+    MySQL, JavaScript, HTML, and CSS.">
 
-    <meta property="og:description"
-        content="Track watched movies, manage ratings and reviews, and organize your personal movie collection.">
+    <meta property="og:description" content="Track watched movies, manage ratings and reviews, 
+    and organize your personal movie collection.">
+
+    <meta property="og:url" content="https://movie-manager-jj.infinityfreeapp.com/">
 
     <meta property="og:title" content="WatchLog - Movie Tracking Web App">
 
@@ -22,15 +24,16 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="canonical" href="https://movie-manager-jj.infinityfreeapp.com/">
 
     <link rel="stylesheet" href="assets/css/styles.css">
 
     <link rel="icon" href="assets/images/favicon.ico?v=2" type="image/x-icon">
 
     <script src="assets/js/app.js" defer></script>
-    
+
 </head>
 <body>
 
