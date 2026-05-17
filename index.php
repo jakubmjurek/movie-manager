@@ -68,7 +68,7 @@
 
                 <h2>Dashboard</h2>
 
-                <p>Welcome to WatchLog! This is your dashboard where you can track 
+                <p>Welcome to WatchLog! This is your dashboard, where you can track 
                 the movies you've watched, manage your ratings and organize your 
                 personal movie collection. Use the navigation menu to explore 
                 different features of the application.</p>
