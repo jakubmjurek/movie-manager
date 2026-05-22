@@ -201,6 +201,16 @@ footer p {
     font-weight: 500;
 }
 
+.movie-card {
+    background: red;
+    color: white;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 1rem;
+    border: 1px solid #efdc75;
+    width: 300px;
+}
+
 @media (max-width: 1024px) {
 
     aside {

@@ -24,9 +24,12 @@ document.getElementById('movie-form').addEventListener('submit', function(e) {
     movies.push(movie);
 
     renderMovies();
+
+    document.getElementById('movie-form').reset();
 });
 
 function renderMovies() {
+
     const moviesContainer = document.querySelector('.movies-container');
 
     moviesContainer.innerHTML = '';
