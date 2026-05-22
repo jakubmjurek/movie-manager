@@ -32,7 +32,7 @@
 
     <link rel="icon" href="assets/images/favicon.ico?v=2" type="image/x-icon">
 
-    <script src="assets/js/app.js" defer></script>
+    <script src="assets/js/app.js?v=1" defer></script>
 
 </head>
 <body>
