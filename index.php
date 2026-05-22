@@ -193,7 +193,7 @@
 
     </div>
 
-    <footer><p>&copy; 2026 Jakub Jurek. All rights reserved.</p></footer>
+    <footer><p><?php echo date("Y"); ?> Jakub Jurek. All rights reserved.</p></footer>
 
 </body>
 </html>
