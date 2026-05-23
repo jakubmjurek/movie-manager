@@ -150,7 +150,7 @@
 
                     <label for="rating">Rating</label>
 
-                    <input type="number" id="rating" name="rating" min="0" max="10" step="0.1" placeholder="0-10">
+                    <input type="number" id="rating" name="rating" min="0" max="10" step="0.1" placeholder="0-10" required>
 
                     <label for="watch-date">Date Watched</label>
 
