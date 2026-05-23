@@ -25,11 +25,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=3">
 
     <link rel="icon" href="favicon.ico?v=2" type="image/x-icon">
 
-    <script src="app.js?v=2" defer></script>
+    <script src="app.js?v=4" defer></script>
     
 </head>
 <body>
@@ -158,7 +158,7 @@
 
                     <label for="opinion">Your Opinion</label>
 
-                    <textarea id="opinion" name="opinion" placeholder="Write your opinion about the movie..."></textarea>
+                    <textarea id="opinion" name="opinion" placeholder="Write your opinion about the movie..." maxlength="300"></textarea>
 
                     <button type="submit">Add Movie</button>
 

@@ -1,3 +1,21 @@
+/* DATE LIMIT */
+
+const today = new Date();
+
+const year = today.getFullYear();
+
+const month =
+    String(today.getMonth() + 1).padStart(2, '0');
+
+const day =
+    String(today.getDate()).padStart(2, '0');
+
+const maxDate = `${year}-${month}-${day}`;
+
+document.getElementById('watch-date').max = maxDate;
+
+/* MOVIES STATE */
+
 const movies = [];
 
 document.getElementById('movie-form').addEventListener('submit', function(e) {
@@ -46,19 +64,19 @@ function renderMovies() {
 
         const movieGenre = document.createElement('p');
 
-        movieGenre.textContent = `Genre: ${movie.genre}`;
+        movieGenre.innerHTML = `<strong>Genre:</strong> ${movie.genre}`;
 
         const movieRating = document.createElement('p');
 
-        movieRating.textContent = `Rating: ${movie.rating}/10`;
+        movieRating.innerHTML = `<strong>Rating:</strong> ${movie.rating}/10`;
 
         const movieWatchDate = document.createElement('p');
 
-        movieWatchDate.textContent = `Watch Date: ${movie.watchDate}`;
+        movieWatchDate.innerHTML = `<strong>Watch Date:</strong> ${movie.watchDate}`;
 
         const movieOpinion = document.createElement('p');
 
-        movieOpinion.textContent = movie.opinion;
+        movieOpinion.innerHTML = `<strong>Your Opinion:</strong> ${movie.opinion}`;
 
         movieCard.appendChild(movieTitle);
 
