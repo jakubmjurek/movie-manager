@@ -214,12 +214,20 @@ footer p {
     transition: 0.2s ease;
 }
 
-.movie-card:hover {
-    border-color: #efdc75;
+.movie-card:hover {border-color: #efdc75;}
+
+.movie-card p {color: #d0d0d0;}
+
+.delete-btn {
+    margin-top: 1rem;
+    background-color: #1b1b1b;
+    border: 1px solid #b33939;
+    color: #d0d0d0;
 }
 
-.movie-card p {
-    color: #d0d0d0;
+.delete-btn:hover {
+    background-color: #b33939;
+    color: #f5f5f5;
 }
 
 @media (max-width: 1024px) {

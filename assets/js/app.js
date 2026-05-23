@@ -52,7 +52,12 @@ function renderMovies() {
 
     moviesContainer.innerHTML = '';
 
-    movies.forEach(function(movie) {
+    if (movies.length === 0) {
+        moviesContainer.innerHTML = '<p class="empty-message">No movies added yet.</p>';
+        return;
+    }
+
+    movies.forEach(function(movie, index) {
 
         const movieCard = document.createElement('article');
 
@@ -78,6 +83,18 @@ function renderMovies() {
 
         movieOpinion.innerHTML = `<strong>Your Opinion:</strong> ${movie.opinion}`;
 
+        const deleteButton = document.createElement('button');
+
+        deleteButton.classList.add('delete-btn');
+
+        deleteButton.textContent = 'Delete';
+
+        deleteButton.addEventListener('click', function() {
+            movies.splice(index, 1);
+
+            renderMovies();
+        });
+
         movieCard.appendChild(movieTitle);
 
         movieCard.appendChild(movieGenre);
@@ -87,6 +104,8 @@ function renderMovies() {
         movieCard.appendChild(movieWatchDate);
 
         movieCard.appendChild(movieOpinion);
+
+        movieCard.appendChild(deleteButton);
 
         moviesContainer.appendChild(movieCard);
 

@@ -25,11 +25,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="styles.css?v=3">
+    <link rel="stylesheet" href="styles.css?v=4">
 
     <link rel="icon" href="favicon.ico?v=2" type="image/x-icon">
 
-    <script src="app.js?v=4" defer></script>
+    <script src="app.js?v=5" defer></script>
     
 </head>
 <body>
