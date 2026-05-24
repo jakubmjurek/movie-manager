@@ -4,11 +4,9 @@ const today = new Date();
 
 const year = today.getFullYear();
 
-const month =
-    String(today.getMonth() + 1).padStart(2, '0');
+const month = String(today.getMonth() + 1).padStart(2, '0');
 
-const day =
-    String(today.getDate()).padStart(2, '0');
+const day = String(today.getDate()).padStart(2, '0');
 
 const maxDate = `${year}-${month}-${day}`;
 
@@ -19,6 +17,7 @@ document.getElementById('watch-date').max = maxDate;
 const movies = [];
 
 document.getElementById('movie-form').addEventListener('submit', function(e) {
+    
     e.preventDefault();
 
     const title = document.getElementById('title').value;
@@ -57,7 +56,9 @@ function renderMovies() {
     moviesContainer.innerHTML = '';
 
     if (movies.length === 0) {
+
         moviesContainer.innerHTML = '<p class="empty-message">No movies added yet.</p>';
+
         return;
     }
 
@@ -94,6 +95,7 @@ function renderMovies() {
         deleteButton.textContent = 'Delete';
 
         deleteButton.addEventListener('click', function() {
+
             movies.splice(index, 1);
 
             renderMovies();
@@ -165,8 +167,7 @@ function updateDashboard() {
 
     }, {});
 
-    const favoriteGenre =
-        Object.keys(genreCounts).reduce((a, b) => {
+    const favoriteGenre = Object.keys(genreCounts).reduce((a, b) => {
 
             return genreCounts[a] > genreCounts[b]
 
@@ -176,7 +177,17 @@ function updateDashboard() {
 
         });
 
+    if (genreCounts[favoriteGenre] < 2) {
+
+    document.getElementById('favorite-genre').textContent = 'Not enough data';
+
+    }    
+    
+    else {
+
     document.getElementById('favorite-genre').textContent = favoriteGenre;
+
+    }
 
 }
 
