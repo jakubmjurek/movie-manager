@@ -35,7 +35,8 @@ document.getElementById('movie-form').addEventListener('submit', function(e) {
         genre,
         rating,
         watchDate,
-        opinion
+        opinion,
+        createdAt: Date.now()
     };
 
     movies.push(movie);
@@ -149,13 +150,28 @@ function updateDashboard() {
 
     const lastWatchedMovie = movies.reduce((latest, movie) => {
 
-        return new Date(movie.watchDate) > new Date(latest.watchDate)
+    const movieDate = new Date(movie.watchDate);
 
-            ? movie
+    const latestDate = new Date(latest.watchDate);
 
-            : latest;
+    if (movieDate > latestDate) {
 
-    });
+        return movie;
+
+    }
+
+    if (
+        movieDate.getTime() === latestDate.getTime()
+        && movie.createdAt > latest.createdAt
+    ) {
+
+        return movie;
+
+    }
+
+    return latest;
+
+    }, movies[0]);
 
     document.getElementById('last-watched').textContent = lastWatchedMovie.title;
 

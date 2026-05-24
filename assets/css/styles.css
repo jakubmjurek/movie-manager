@@ -219,7 +219,7 @@ footer p {
 .movie-card p {color: #d0d0d0;}
 
 .delete-btn {
-    margin-top: 1rem;
+    margin-top: auto;
     background-color: #1b1b1b;
     border: 1px solid #b33939;
     color: #d0d0d0;
