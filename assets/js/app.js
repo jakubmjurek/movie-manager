@@ -43,8 +43,12 @@ document.getElementById('movie-form').addEventListener('submit', function(e) {
 
     renderMovies();
 
+    updateDashboard();
+
     document.getElementById('movie-form').reset();
 });
+
+/* MOVIE RENDERING */
 
 function renderMovies() {
 
@@ -93,6 +97,9 @@ function renderMovies() {
             movies.splice(index, 1);
 
             renderMovies();
+
+            updateDashboard();
+
         });
 
         movieCard.appendChild(movieTitle);
@@ -109,6 +116,69 @@ function renderMovies() {
 
         moviesContainer.appendChild(movieCard);
 
-});
+    });
 
 }
+
+/* DASHBOARD UPDATES */
+
+function updateDashboard() {
+
+    const totalMovies = movies.length;
+
+    if (totalMovies === 0) {
+
+        document.getElementById('total-movies').textContent = '0';
+
+        document.getElementById('average-rating').textContent = '0.0';
+
+        document.getElementById('favorite-genre').textContent = 'No data';
+
+        document.getElementById('last-watched').textContent = 'No movies added';
+
+        return;
+    }
+
+    const averageRating = movies.reduce((sum, movie) => sum + movie.rating, 0) / totalMovies;
+
+    document.getElementById('total-movies').textContent = totalMovies;
+
+    document.getElementById('average-rating').textContent = averageRating.toFixed(1);
+
+    const lastWatchedMovie = movies.reduce((latest, movie) => {
+
+        return new Date(movie.watchDate) > new Date(latest.watchDate)
+
+            ? movie
+
+            : latest;
+
+    });
+
+    document.getElementById('last-watched').textContent = lastWatchedMovie.title;
+
+    const genreCounts = movies.reduce((counts, movie) => {
+
+        counts[movie.genre] = (counts[movie.genre] || 0) + 1;
+
+        return counts;
+
+    }, {});
+
+    const favoriteGenre =
+        Object.keys(genreCounts).reduce((a, b) => {
+
+            return genreCounts[a] > genreCounts[b]
+
+                ? a
+
+                : b;
+
+        });
+
+    document.getElementById('favorite-genre').textContent = favoriteGenre;
+
+}
+
+renderMovies();
+updateDashboard();

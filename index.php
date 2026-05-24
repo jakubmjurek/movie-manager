@@ -76,7 +76,7 @@
 
                     <span>Total Movies</span>
                     
-                    <span>0</span>
+                    <span id="total-movies">0</span>
                 
                 </div>
 
@@ -84,7 +84,7 @@
 
                     <span>Average Rating</span>
             
-                    <span>No data</span>
+                    <span id="average-rating">0.0</span>
         
                 </div>
 
@@ -92,7 +92,7 @@
 
                     <span>Favorite Genre</span>
 
-                    <span>No data</span>
+                    <span id="favorite-genre">No data</span>
 
                 </div>
 
@@ -100,7 +100,7 @@
 
                     <span>Last Watched</span>
 
-                    <span>No movies added</span>
+                    <span id="last-watched">No movies added</span>
 
                 </div>
                 
