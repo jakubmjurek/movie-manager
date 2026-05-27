@@ -193,7 +193,9 @@ function updateDashboard() {
 
         });
 
-    if (genreCounts[favoriteGenre] < 2) {
+    const minimumFavoriteGenreCount = 2;
+    
+    if (genreCounts[favoriteGenre] < minimumFavoriteGenreCount) {
 
     document.getElementById('favorite-genre').textContent = 'Not enough data';
 
