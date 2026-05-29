@@ -12,9 +12,29 @@ const maxDate = `${year}-${month}-${day}`;
 
 document.getElementById('watch-date').max = maxDate;
 
+/* LOCAL STORAGE */
+
+const loadMoviesFromStorage = function () {
+    
+    const storedMovies = localStorage.getItem('movies');
+
+    if (storedMovies) {
+        const parsedMovies = JSON.parse(storedMovies);
+
+        parsedMovies.forEach(movie => movies.push(movie));
+    }
+};
+
+const saveMoviesToStorage = function () {
+
+    localStorage.setItem('movies', JSON.stringify(movies));
+};
+
 /* MOVIES STATE */
 
 const movies = [];
+
+loadMoviesFromStorage();
 
 document.getElementById('movie-form').addEventListener('submit', function(e) {
     
@@ -40,6 +60,8 @@ document.getElementById('movie-form').addEventListener('submit', function(e) {
     };
 
     movies.push(movie);
+
+    saveMoviesToStorage();
 
     renderMovies();
 
@@ -98,6 +120,8 @@ function renderMovies() {
         deleteButton.addEventListener('click', function() {
 
             movies.splice(index, 1);
+
+            saveMoviesToStorage();
 
             renderMovies();
 
