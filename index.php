@@ -25,11 +25,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="styles.css?v=6">
+    <link rel="stylesheet" href="assets/css/styles.css?v=7">
 
     <link rel="icon" href="favicon.ico?v=2" type="image/x-icon">
 
-    <script src="app.js?v=12" defer></script>
+    <script src="assets/js/app.js?v=13" defer></script>
     
 </head>
 <body>
@@ -40,19 +40,65 @@
 
     <div class="container">
 
-        <aside>
+        <aside class="sidebar">
+
+            <button id="sidebar-toggle" class="button-sidebar" aria-label="Toggle button for sidebar">
+
+                <img src="images/icons/arrows-left-right.svg" alt="Toggle sidebar" loading="lazy">
+
+            </button>
 
             <nav>
 
                 <ul>
 
-                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li>
+                        
+                        <a href="#dashboard">
 
-                    <li><a href="#add-movie">Add Movie</a></li>
+                            <img src="images/icons/home.svg" alt="" class="nav-icon" loading="lazy" aria-label="Dashboard">
 
-                    <li><a href="#collection">Movie Collection</a></li>
+                            <span class="nav-text">Dashboard</span>
 
-                    <li><a href="#statistics">Statistics</a></li>
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#add-movie">
+
+                            <img src="images/icons/plus.svg" alt="" class="nav-icon" loading="lazy" aria-label="Add Movie">
+
+                            <span class="nav-text">Add Movie</span>
+                            
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a href="#collection">
+
+                            <img src="images/icons/movie.svg" alt="" class="nav-icon" loading="lazy" aria-label="Movie Collection">
+
+                            <span class="nav-text">Movie Collection</span>
+
+                        </a>
+                        
+                    </li>
+
+                    <li>
+                        <a href="#statistics">
+
+                            <img src="images/icons/chart-bar.svg" alt="" class="nav-icon" loading="lazy" aria-label="Statistics">
+
+                            <span class="nav-text">Statistics</span>
+
+                        </a>
+
+                    </li>
+
                 </ul>
 
             </nav>

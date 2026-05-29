@@ -31,6 +31,31 @@ const saveMoviesToStorage = function () {
     localStorage.setItem('movies', JSON.stringify(movies));
 };
 
+/* SIDEBAR TOGGLE */
+
+const sidebar = document.querySelector('.sidebar');
+
+const sidebarToggle = document.getElementById('sidebar-toggle');
+
+const savedSidebarState = localStorage.getItem('sidebarCollapsed');
+
+if (savedSidebarState === 'true') {
+
+    sidebar.classList.add('collapsed');
+
+}
+
+sidebarToggle.addEventListener('click', function() {
+
+    sidebar.classList.toggle('collapsed');
+
+    localStorage.setItem(
+        'sidebarCollapsed',
+        sidebar.classList.contains('collapsed')
+    );
+
+});
+
 /* MOVIES STATE */
 
 const movies = [];
