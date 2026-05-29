@@ -19,6 +19,7 @@ const loadMoviesFromStorage = function () {
     const storedMovies = localStorage.getItem('movies');
 
     if (storedMovies) {
+
         const parsedMovies = JSON.parse(storedMovies);
 
         parsedMovies.forEach(movie => movies.push(movie));
@@ -73,7 +74,9 @@ document.getElementById('movie-form').addEventListener('submit', function(e) {
 /* MOVIE SEARCH */
 
 document.getElementById('search-movies').addEventListener('input', function () {
+
     if (movies.length === 0) {
+
         return;
     }
 
@@ -82,11 +85,13 @@ document.getElementById('search-movies').addEventListener('input', function () {
     const movieCards = document.querySelectorAll('.movie-card');
 
     movieCards.forEach(function (card) {
+
         const title = card.querySelector('h3').textContent.toLowerCase();
 
         if (title.includes(query)) {
             card.style.display = '';
         }
+        
         else {
             card.style.display = 'none';
         }
@@ -197,26 +202,24 @@ function updateDashboard() {
 
     const lastWatchedMovie = movies.reduce((latest, movie) => {
 
-    const movieDate = new Date(movie.watchDate);
+        const movieDate = new Date(movie.watchDate);
 
-    const latestDate = new Date(latest.watchDate);
+        const latestDate = new Date(latest.watchDate);
 
-    if (movieDate > latestDate) {
+        if (movieDate > latestDate) {
 
-        return movie;
+            return movie;
+        }
 
-    }
+        if (
+            movieDate.getTime() === latestDate.getTime()
+            && movie.createdAt > latest.createdAt
+        ) {
 
-    if (
-        movieDate.getTime() === latestDate.getTime()
-        && movie.createdAt > latest.createdAt
-    ) {
+            return movie;
+        }
 
-        return movie;
-
-    }
-
-    return latest;
+        return latest;
 
     }, movies[0]);
 
@@ -232,25 +235,24 @@ function updateDashboard() {
 
     const favoriteGenre = Object.keys(genreCounts).reduce((a, b) => {
 
-            return genreCounts[a] > genreCounts[b]
+        return genreCounts[a] > genreCounts[b]
 
-                ? a
+            ? a
 
-                : b;
-
-        });
+            : b;
+    });
 
     const minimumFavoriteGenreCount = 2;
     
     if (genreCounts[favoriteGenre] < minimumFavoriteGenreCount) {
 
-    document.getElementById('favorite-genre').textContent = 'Not enough data';
+        document.getElementById('favorite-genre').textContent = 'Not enough data';
 
     }    
     
     else {
 
-    document.getElementById('favorite-genre').textContent = favoriteGenre;
+        document.getElementById('favorite-genre').textContent = favoriteGenre;
 
     }
 
