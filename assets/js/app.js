@@ -70,6 +70,29 @@ document.getElementById('movie-form').addEventListener('submit', function(e) {
     document.getElementById('movie-form').reset();
 });
 
+/* MOVIE SEARCH */
+
+document.getElementById('search-movies').addEventListener('input', function () {
+    if (movies.length === 0) {
+        return;
+    }
+
+    const query = this.value.toLowerCase();
+
+    const movieCards = document.querySelectorAll('.movie-card');
+
+    movieCards.forEach(function (card) {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+
+        if (title.includes(query)) {
+            card.style.display = '';
+        }
+        else {
+            card.style.display = 'none';
+        }
+    });
+});
+
 /* MOVIE RENDERING */
 
 function renderMovies() {
