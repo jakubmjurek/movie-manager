@@ -385,18 +385,18 @@ footer p {
     .sidebar nav {width: 100%;}
 
     .sidebar nav ul {
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 0;
-    height: 100%;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        gap: 0;
+        height: 100%;
     }
 
     .sidebar nav li {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .nav-text,
@@ -425,6 +425,8 @@ footer p {
     input[type="search"] {max-width: 100%;}
 
     .movie-card {width: 100%;}
+
+    footer{display: none;}
 
 }
 
