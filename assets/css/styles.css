@@ -363,39 +363,53 @@ footer p {
 
 @media (max-width: 768px) {
 
-    .container {
-        flex-direction: column;
-        width:100%;
-    }
+    .container {flex-direction: column;}
 
-    aside {
+    .sidebar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
         width: 100%;
-        padding: 1rem;
+        height: 70px;
+        padding: 0;
         border-right: none;
-        border-bottom: 1px solid var(--color-border);
-    }
-
-    nav ul {
-        flex-direction: column;
+        border-bottom: none;
+        border-top: 1px solid var(--color-border);
+        background-color: var(--color-surface);
+        display: flex;
         justify-content: center;
-        align-items:center;
-        gap: 1rem;
+        align-items: center;
+        z-index: 1000;
     }
 
-    header, footer {width:100%;}
+    .sidebar nav {width: 100%;}
+
+    .sidebar nav ul {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 0;
+    height: 100%;
+    }
+
+    .sidebar nav li {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .nav-text,
+    .button-sidebar {display: none;}
 
     #sidebar-toggle {display: none;}
 
-    .sidebar, .sidebar.collapsed {width: 100%;}
-
-    .sidebar .nav-text {
-        width: auto;
-        display: inline;
-    }
+    .sidebar.collapsed {width: 100%;}
 
     main {
-        width:100%;
+        width: 100%;
         padding: 1rem;
+        padding-bottom: 90px;
     }
 
     h2 {font-size: 1.5rem;}
