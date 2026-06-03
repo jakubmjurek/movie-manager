@@ -29,7 +29,7 @@
 
     <link rel="icon" href="favicon.ico?v=2" type="image/x-icon">
 
-    <script src="assets/js/app.js?v=13" defer></script>
+    <script src="assets/js/app.js?v=14" defer></script>
     
 </head>
 <body>
