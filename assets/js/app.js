@@ -1,5 +1,7 @@
 /* DATE LIMIT */
 
+const watchDateInput = document.getElementById('watch-date');
+
 const today = new Date();
 
 const year = today.getFullYear();
@@ -8,9 +10,15 @@ const month = String(today.getMonth() + 1).padStart(2, '0');
 
 const day = String(today.getDate()).padStart(2, '0');
 
-const maxDate = `${year}-${month}-${day}`;
+const maxDate = today.toISOString().split('T')[0];
 
-document.getElementById('watch-date').max = maxDate;
+watchDateInput.max = maxDate;
+
+const minDate = new Date();
+
+minDate.setFullYear(minDate.getFullYear() - 120);
+
+watchDateInput.min = minDate.toISOString().split('T')[0];
 
 /* LOCAL STORAGE */
 
@@ -72,7 +80,7 @@ document.getElementById('movie-form').addEventListener('submit', function(e) {
 
     const rating = parseFloat(document.getElementById('rating').value);
 
-    const watchDate = document.getElementById('watch-date').value;
+    const watchDate = watchDateInput.value;
 
     const opinion = document.getElementById('opinion').value;
 
