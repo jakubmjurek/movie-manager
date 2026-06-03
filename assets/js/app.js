@@ -2,6 +2,8 @@
 
 const watchDateInput = document.getElementById('watch-date');
 
+const today = new Date();
+
 const maxDate = today.toISOString().split('T')[0];
 
 watchDateInput.max = maxDate;
