@@ -2,14 +2,6 @@
 
 const watchDateInput = document.getElementById('watch-date');
 
-const today = new Date();
-
-const year = today.getFullYear();
-
-const month = String(today.getMonth() + 1).padStart(2, '0');
-
-const day = String(today.getDate()).padStart(2, '0');
-
 const maxDate = today.toISOString().split('T')[0];
 
 watchDateInput.max = maxDate;
@@ -121,7 +113,9 @@ document.getElementById('search-movies').addEventListener('input', function () {
 
         const title = card.querySelector('h3').textContent.toLowerCase();
 
-        if (title.includes(query)) {
+        const genre = card.querySelector('.movie-genre').textContent.toLowerCase();
+
+        if (title.includes(query) || genre.includes(query)) {
             card.style.display = '';
         }
         
@@ -157,6 +151,8 @@ function renderMovies() {
         movieTitle.textContent = movie.title;
 
         const movieGenre = document.createElement('p');
+
+        movieGenre.classList.add('movie-genre');
 
         movieGenre.innerHTML = `<strong>Genre:</strong> ${movie.genre}`;
 
