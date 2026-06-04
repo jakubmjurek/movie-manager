@@ -24,14 +24,19 @@ const loadMoviesFromStorage = function () {
 
         const parsedMovies = JSON.parse(storedMovies);
 
-        parsedMovies.forEach(movie => movies.push(movie));
+        parsedMovies.forEach(movie => {
+
+            if (!movie.id) { movie.id = Date.now() + Math.random(); }
+
+            movies.push(movie);
+
+        });
+
     }
+    
 };
 
-const saveMoviesToStorage = function () {
-
-    localStorage.setItem('movies', JSON.stringify(movies));
-};
+const saveMoviesToStorage = function () { localStorage.setItem('movies', JSON.stringify(movies));};
 
 /* SIDEBAR TOGGLE */
 
@@ -52,8 +57,11 @@ sidebarToggle.addEventListener('click', function() {
     sidebar.classList.toggle('collapsed');
 
     localStorage.setItem(
+
         'sidebarCollapsed',
+
         sidebar.classList.contains('collapsed')
+
     );
 
 });
@@ -61,6 +69,8 @@ sidebarToggle.addEventListener('click', function() {
 /* MOVIES STATE */
 
 const movies = [];
+
+let editingMovieId = null;
 
 loadMoviesFromStorage();
 
@@ -78,7 +88,33 @@ document.getElementById('movie-form').addEventListener('submit', function(e) {
 
     const opinion = document.getElementById('opinion').value;
 
+    if (editingMovieId !== null) {
+
+        const movieIndex = movies.findIndex(movie => movie.id === editingMovieId);
+
+        if (movieIndex !== -1) {
+
+            movies[movieIndex] = {
+                ...movies[movieIndex],
+                title,
+                genre,
+                rating,
+                watchDate,
+                opinion
+            };
+
+        }
+
+        editingMovieId = null;
+
+        document.querySelector('#movie-form button').textContent = 'Add Movie';
+
+    }
+    
+    else {
+
     const movie = {
+        id: Date.now(),
         title,
         genre,
         rating,
@@ -88,6 +124,8 @@ document.getElementById('movie-form').addEventListener('submit', function(e) {
     };
 
     movies.push(movie);
+
+    }
 
     saveMoviesToStorage();
 
@@ -104,10 +142,7 @@ document.getElementById('movie-form').addEventListener('submit', function(e) {
 
 document.getElementById('search-movies').addEventListener('input', function () {
 
-    if (movies.length === 0) {
-
-        return;
-    }
+    if (movies.length === 0) { return; }
 
     const query = this.value.toLowerCase();
 
@@ -119,14 +154,12 @@ document.getElementById('search-movies').addEventListener('input', function () {
 
         const genre = card.querySelector('.movie-genre').textContent.toLowerCase();
 
-        if (title.includes(query) || genre.includes(query)) {
-            card.style.display = '';
-        }
+        if (title.includes(query) || genre.includes(query)) { card.style.display = ''; }
         
-        else {
-            card.style.display = 'none';
-        }
+        else { card.style.display = 'none'; }
+        
     });
+
 });
 
 /* MOVIE RENDERING */
@@ -142,6 +175,7 @@ function renderMovies() {
         moviesContainer.innerHTML = '<p class="empty-message">No movies added yet.</p>';
 
         return;
+
     }
 
     movies.forEach(function(movie, index) {
@@ -192,6 +226,54 @@ function renderMovies() {
 
         });
 
+        const editButton = document.createElement('button');
+
+        editButton.classList.add('edit-btn');
+
+        editButton.textContent = 'Edit';
+
+        editButton.addEventListener('click', function() {
+
+            document.getElementById('title').value = movie.title;
+
+            document.getElementById('genre').value = movie.genre;
+
+            document.getElementById('rating').value = movie.rating;
+
+            document.getElementById('watch-date').value = movie.watchDate;
+
+            document.getElementById('opinion').value = movie.opinion;
+
+            editingMovieId = movie.id;
+
+            document.querySelector('#movie-form button').textContent = 'Save Changes';
+
+            document.getElementById('add-movie').scrollIntoView({ behavior: 'smooth' });
+
+        });
+
+        deleteButton.addEventListener('click', function() {
+
+            const confirmed = confirm( 'Delete this movie?' );
+
+            if (!confirmed) return;
+
+            movies.splice(index, 1);
+
+            saveMoviesToStorage();
+
+            renderMovies();
+
+            updateDashboard();
+
+            renderStatistics();
+
+        });
+
+        const movieActions = document.createElement('div');
+
+        movieActions.classList.add('movie-actions');
+
         movieCard.appendChild(movieTitle);
 
         movieCard.appendChild(movieGenre);
@@ -202,7 +284,11 @@ function renderMovies() {
 
         movieCard.appendChild(movieOpinion);
 
-        movieCard.appendChild(deleteButton);
+        movieActions.appendChild(editButton);
+
+        movieActions.appendChild(deleteButton);
+
+        movieCard.appendChild(movieActions);
 
         moviesContainer.appendChild(movieCard);
 
@@ -227,6 +313,7 @@ function updateDashboard() {
         document.getElementById('last-watched').textContent = 'No movies added';
 
         return;
+
     }
 
     const averageRating = movies.reduce((sum, movie) => sum + movie.rating, 0) / totalMovies;
@@ -241,18 +328,9 @@ function updateDashboard() {
 
         const latestDate = new Date(latest.watchDate);
 
-        if (movieDate > latestDate) {
+        if (movieDate > latestDate) { return movie;}
 
-            return movie;
-        }
-
-        if (
-            movieDate.getTime() === latestDate.getTime()
-            && movie.createdAt > latest.createdAt
-        ) {
-
-            return movie;
-        }
+        if (movieDate.getTime() === latestDate.getTime() && movie.createdAt > latest.createdAt) { return movie; }
 
         return latest;
 
@@ -275,21 +353,14 @@ function updateDashboard() {
             ? a
 
             : b;
+        
     });
 
     const minimumFavoriteGenreCount = 2;
     
-    if (genreCounts[favoriteGenre] < minimumFavoriteGenreCount) {
-
-        document.getElementById('favorite-genre').textContent = 'Not enough data';
-
-    }    
+    if (genreCounts[favoriteGenre] < minimumFavoriteGenreCount) { document.getElementById('favorite-genre').textContent = 'Not enough data'; }    
     
-    else {
-
-        document.getElementById('favorite-genre').textContent = favoriteGenre;
-
-    }
+    else { document.getElementById('favorite-genre').textContent = favoriteGenre; }
 
 }
 
@@ -301,18 +372,17 @@ function renderStatistics() {
 
     const emptyMsg = section.querySelector('.empty-message');
 
-    const statsContainer = section.querySelector('.stats-container') || 
-        (() => {
+    const statsContainer = section.querySelector('.stats-container') || (() => {
         
-            const div = document.createElement('div');
+        const div = document.createElement('div');
         
-            div.className = 'stats-container';
+        div.className = 'stats-container';
         
-            section.appendChild(div);
+        section.appendChild(div);
             
-            return div;
+        return div;
         
-        })();
+    })();
 
     if (movies.length === 0) {
 
@@ -433,9 +503,13 @@ function renderStatistics() {
     }).length;
 
     [
+    
         { label: 'Today', value: moviesToday },
+
         { label: 'This Month', value: moviesThisMonth },
+
         { label: 'This Year', value: moviesThisYear }
+
     ].forEach(stat => {
 
         const card = document.createElement('div');
@@ -464,11 +538,7 @@ function renderStatistics() {
 
     const genreCounts = {};
 
-    movies.forEach(movie => {
-
-        genreCounts[movie.genre] = (genreCounts[movie.genre] || 0) + 1;
-
-    });
+    movies.forEach(movie => { genreCounts[movie.genre] = (genreCounts[movie.genre] || 0) + 1; });
 
     const mostGenre = Object.keys(genreCounts).length > 0
         
@@ -498,9 +568,7 @@ function renderStatistics() {
 
     chart.className = 'genre-chart';
 
-    const sortedGenres = Object.entries(genreCounts)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, 10);
+    const sortedGenres = Object.entries(genreCounts).sort((a, b) => b[1] - a[1]).slice(0, 10);
 
     const maxCount = sortedGenres.length > 0 ? Math.max(...sortedGenres.map(g => g[1])) : 1;
 
@@ -651,3 +719,114 @@ function renderSortedMovies(sortedMovies) {
 renderMovies();
 updateDashboard();
 renderStatistics();
+
+/* JSON EXPORT */
+
+document.getElementById('export-json').addEventListener('click', function () {
+
+    if (movies.length === 0) {
+
+        alert('No movies to export.');
+
+        return;
+    }
+
+    const jsonData = JSON.stringify(
+        movies,
+        null,
+        2
+    );
+
+    const blob = new Blob(
+        [jsonData],
+        { type: 'application/json' }
+    );
+
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+
+    link.href = url;
+
+    link.download = 'watchlog-backup.json';
+
+    link.click();
+
+    URL.revokeObjectURL(url);
+
+});
+
+/* JSON IMPORT */
+
+document.getElementById('import-button').addEventListener('click', function () {
+
+    document.getElementById('import-json').click();
+
+});
+
+document.getElementById('import-json').addEventListener('change', function (event) {
+
+    const file = event.target.files[0];
+
+    if (!file) { return; }
+
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+
+        try {
+
+            const importedMovies = JSON.parse(
+                 e.target.result
+            );
+
+            if (!Array.isArray(importedMovies)) { throw new Error(); }
+
+            const confirmImport = confirm( 'Importing will replace your current collection. Continue?' );
+
+            if (!confirmImport) { return; }
+
+            movies.length = 0;
+
+            importedMovies.forEach(movie => {
+
+                if (!movie.id) {
+
+                    movie.id =
+                        Date.now() + Math.random();
+
+                }
+
+                movies.push(movie);
+
+            });
+
+            saveMoviesToStorage();
+
+            renderMovies();
+
+            updateDashboard();
+
+            renderStatistics();
+
+            alert('Movies imported successfully.');
+            
+            event.target.value = '';
+
+        }
+
+        catch {
+
+            alert( 'Invalid JSON file.' );
+
+        }
+
+    };
+
+    reader.readAsText(file);
+
+});
+
+/* FOOTER YEAR */
+
+document.getElementById('copyright').innerHTML = `<p>${new Date().getFullYear()} &copy; Jakub Jurek. All rights reserved.</p>`;

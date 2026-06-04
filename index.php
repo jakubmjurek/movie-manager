@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <meta name="description"
-        content="Movie tracking web application built with PHP, MySQL, JavaScript, HTML, and CSS.">
+        content="Movie tracking web application built with JavaScript, HTML and CSS.">
 
     <meta property="og:description"
         content="Track watched movies, manage ratings and reviews, and organize your personal movie collection.">
@@ -25,11 +25,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="assets/css/styles.css?v=10">
+    <link rel="stylesheet" href="assets/css/styles.css?v=11">
 
     <link rel="icon" href="favicon.ico?v=2" type="image/x-icon">
 
-    <script src="assets/js/app.js?v=17" defer></script>
+    <script src="assets/js/app.js?v=18" defer></script>
     
 </head>
 <body>
@@ -166,7 +166,7 @@
 
                     <label for="genre">Genre</label>
 
-                    <select id="genre" name="genre">
+                    <select id="genre" name="genre" required>
 
                         <option value="">Select genre</option>
 
@@ -200,13 +200,23 @@
 
                     <label for="watch-date">Date Watched</label>
 
-                    <input type="date" id="watch-date" name="watch-date">
+                    <input type="date" id="watch-date" name="watch-date" required>
 
                     <label for="opinion">Your Opinion</label>
 
                     <textarea id="opinion" name="opinion" placeholder="Write your opinion about the movie..." maxlength="300"></textarea>
 
-                    <button type="submit">Add Movie</button>
+                    <div class="data-actions">
+
+                        <button type="submit">Add Movie</button>
+
+                        <button type="button" id="export-json">Export JSON</button>
+
+                        <button type="button" id="import-button">Import JSON</button>
+
+                        <input type="file" id="import-json" accept=".json" hidden aria-label="Import movies from JSON file">
+
+                    </div>
 
                 </form>
 
@@ -238,7 +248,7 @@
 
     </div>
 
-    <footer><p><?php echo date("Y"); ?> Jakub Jurek. All rights reserved.</p></footer>
+    <footer><p id="copyright"></p></footer>
 
 </body>
 </html>

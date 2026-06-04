@@ -313,7 +313,12 @@ input[type="search"] {
     gap: 1.5rem;
 }
 
-.empty-message {color: var(--color-text-placeholder);}
+.empty-message {
+    text-align: center;
+    width: 100%;
+    margin-top: 0.75rem;
+    color: var(--color-text-placeholder);
+}
 
 footer {
     display: flex;
@@ -348,6 +353,17 @@ footer p {
 
 .movie-card p {color: var(--color-text-muted);}
 
+.edit-btn {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-accent);
+    color: var(--color-text);
+}
+
+.edit-btn:hover {
+    background-color: var(--color-accent);
+    color: var(--color-text-dark);
+}
+
 .delete-btn {
     margin-top: auto;
     background-color: var(--color-surface);
@@ -359,6 +375,20 @@ footer p {
     background-color: var(--color-danger);
     color: var(--color-text-muted);
 }
+
+.data-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.movie-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: auto;
+}
+
+.movie-actions button {flex: 1;}
 
 .stats-container {
     display: flex;
