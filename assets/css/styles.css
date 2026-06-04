@@ -760,6 +760,21 @@ footer p {
 
 }
 
+@media (hover: none) and (pointer: coarse) {
+
+    .sort-btn:hover,
+    .edit-btn:hover,
+    .delete-btn:hover,
+    nav a:hover {transform: none;}
+
+    .sort-btn:active {
+        transform: scale(0.98);
+        border-color: var(--color-accent);
+        background-color: var(--color-border);
+    }
+
+}
+
 @media (prefers-reduced-motion: reduce) {
 
     html {scroll-behavior: auto;}
