@@ -212,20 +212,6 @@ function renderMovies() {
 
         deleteButton.textContent = 'Delete';
 
-        deleteButton.addEventListener('click', function() {
-
-            movies.splice(index, 1);
-
-            saveMoviesToStorage();
-
-            renderMovies();
-
-            updateDashboard();
-
-            renderStatistics();
-
-        });
-
         const editButton = document.createElement('button');
 
         editButton.classList.add('edit-btn');
